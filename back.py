@@ -30,7 +30,10 @@ def get_access_token(email, password):
 def send_to_llm_api(user_message, history, pack_id, access_token):
     """Send query to LLM API."""
     LLM_API_URL = os.getenv("LLM_API_URL")
-    headers = {"Authorization": f"Bearer {access_token}"}
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"  # Ensure the content type is set to JSON
+    }
     payload = {
         "user_message": user_message,
         "pack_id": pack_id,
